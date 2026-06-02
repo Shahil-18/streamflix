@@ -30,3 +30,7 @@ Add your Vercel link here.
 ## 📌 Project Purpose
 
 This project was built for learning React, API integration, routing, state management, and deployment.
+- Firebase Authentication
+- Login and Signup
+- Protected My List route
+- Logout functionality
