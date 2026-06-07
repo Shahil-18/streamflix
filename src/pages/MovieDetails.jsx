@@ -55,7 +55,7 @@ function MovieDetails() {
             ← Back
           </Link>
 
-          <h1 className="text-5xl font-black md:text-7xl">{movie.title}</h1>
+          <h1 className="text-3xl font-black sm:text-5xl md:text-7xl">{movie.title}</h1>
 
           <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
             <span>⭐ {movie.vote_average?.toFixed(1)}</span>

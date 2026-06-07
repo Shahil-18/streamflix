@@ -18,7 +18,7 @@ function Hero({ movie }) {
           StreamFlix Original
         </p>
 
-        <h2 className="mb-4 text-5xl font-black leading-tight md:text-7xl">
+        <h2 className="mb-4 text-3xl font-black leading-tight sm:text-5xl md:text-7xl">
           {movie?.title || "StreamFlix"}
         </h2>
 
@@ -27,7 +27,7 @@ function Hero({ movie }) {
             "Watch trending movies and shows with a premium streaming experience."}
         </p>
 
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-3">
           <button className="rounded bg-white px-7 py-3 font-bold text-black transition hover:bg-gray-300">
             ▶ Play
           </button>
