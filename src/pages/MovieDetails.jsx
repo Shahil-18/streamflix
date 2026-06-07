@@ -36,18 +36,30 @@ function MovieDetails() {
     );
   }
 
+  const addToMyList = () => {
+    const existingList = JSON.parse(localStorage.getItem("myList")) || [];
+    const alreadyAdded = existingList.some((item) => item.id === movie.id);
+
+    if (!alreadyAdded) {
+      localStorage.setItem("myList", JSON.stringify([...existingList, movie]));
+      alert("Movie added to My List");
+    } else {
+      alert("Movie already in My List");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black pb-20 text-white md:pb-0">
       <div
         className="relative flex min-h-screen items-end bg-cover bg-center"
         style={{
           backgroundImage: `url(${backdropBaseUrl}${movie.backdrop_path})`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
-        <div className="relative z-10 max-w-3xl p-8 md:p-14">
+        <div className="relative z-10 max-w-3xl p-5 pt-20 sm:p-8 md:p-14">
           <Link
             to="/"
             className="mb-6 inline-block rounded bg-white/10 px-4 py-2 text-sm hover:bg-white/20"
@@ -55,7 +67,9 @@ function MovieDetails() {
             ← Back
           </Link>
 
-          <h1 className="text-3xl font-black sm:text-5xl md:text-7xl">{movie.title}</h1>
+          <h1 className="text-4xl font-black leading-tight sm:text-5xl md:text-7xl">
+            {movie.title}
+          </h1>
 
           <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
             <span>⭐ {movie.vote_average?.toFixed(1)}</span>
@@ -63,7 +77,7 @@ function MovieDetails() {
             <span>{movie.runtime} min</span>
           </div>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-200">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-200 sm:text-lg">
             {movie.overview}
           </p>
 
@@ -78,7 +92,7 @@ function MovieDetails() {
             ))}
           </div>
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             {trailer ? (
               <a
                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
@@ -95,22 +109,11 @@ function MovieDetails() {
             )}
 
             <button
-  onClick={() => {
-    const existingList = JSON.parse(localStorage.getItem("myList")) || [];
-
-    const alreadyAdded = existingList.some((item) => item.id === movie.id);
-
-    if (!alreadyAdded) {
-      localStorage.setItem("myList", JSON.stringify([...existingList, movie]));
-      alert("Movie added to My List");
-    } else {
-      alert("Movie already in My List");
-    }
-  }}
-  className="rounded bg-red-600 px-7 py-3 font-bold text-white hover:bg-red-700"
->
-  + My List
-</button>
+              onClick={addToMyList}
+              className="rounded bg-red-600 px-7 py-3 font-bold text-white hover:bg-red-700"
+            >
+              + My List
+            </button>
           </div>
         </div>
       </div>

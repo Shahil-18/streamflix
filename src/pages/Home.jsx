@@ -29,11 +29,9 @@ function Home() {
   useEffect(() => {
     const loadMovies = async () => {
       setLoading(true);
-
       setTrendingMovies(await fetchMovies("/trending/movie/week"));
       setActionMovies(await fetchMovies("/discover/movie?with_genres=28"));
       setPopularMovies(await fetchMovies("/movie/popular"));
-
       setLoading(false);
     };
 
@@ -57,20 +55,17 @@ function Home() {
     setSelectedGenre(genre);
     setSearchTerm("");
     setGenreLoading(true);
-
-    const results = await fetchMoviesByGenre(genre.id);
-    setGenreMovies(results);
-
+    setGenreMovies(await fetchMoviesByGenre(genre.id));
     setGenreLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black pb-20 text-white md:pb-0">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Hero movie={trendingMovies[0]} />
 
-      <main className="-mt-10 relative z-20">
-        <div className="px-6 py-4 md:px-12">
+      <main className="relative z-20 -mt-10">
+        <div className="px-5 py-5 sm:px-8 md:px-12">
           <h2 className="mb-4 text-2xl font-bold">Browse by Genre</h2>
 
           <div className="flex flex-wrap gap-3">
@@ -111,10 +106,7 @@ function Home() {
           genreLoading ? (
             <SkeletonRow title={`Loading ${selectedGenre.name} Movies`} />
           ) : (
-            <MovieRow
-              title={`${selectedGenre.name} Movies`}
-              movies={genreMovies}
-            />
+            <MovieRow title={`${selectedGenre.name} Movies`} movies={genreMovies} />
           )
         ) : loading ? (
           <>

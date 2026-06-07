@@ -5,9 +5,9 @@ function MyList() {
   const savedMovies = JSON.parse(localStorage.getItem("myList")) || [];
 
   return (
-    <div className="min-h-screen bg-black px-6 py-10 text-white md:px-12">
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-4xl font-black text-red-600">My List</h1>
+    <div className="min-h-screen bg-black px-5 py-10 pb-24 text-white sm:px-8 md:px-12 md:pb-10">
+      <div className="mb-8 flex items-center justify-between gap-4">
+        <h1 className="text-3xl font-black text-red-600 sm:text-4xl">My List</h1>
 
         <Link
           to="/"
@@ -20,7 +20,7 @@ function MyList() {
       {savedMovies.length === 0 ? (
         <p className="text-gray-400">No movies added yet.</p>
       ) : (
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {savedMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
